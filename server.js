@@ -24,13 +24,13 @@ app.get('/', (req,res) => {
 })
 
 
-app.get('/chats', (req, res) => {
-  db.query('SELECT * FROM chats', (err, result) => {
-    if (err) throw err
+// app.get('/chats', (req, res) => {
+//   db.query('SELECT * FROM chats', (err, result) => {
+//     if (err) throw err
 
-    res.send(result.rows)
-  })
-})
+//     res.send(result.rows)
+//   })
+// })
 
 
 db.connect((err) => {
@@ -43,10 +43,22 @@ db.connect((err) => {
 
 // back end -- this is connecting the client to the server
 ws.on('connection', socket => {
-  console.log('socket connected')
+  console.log('socket connected', socket.id)
 
-  socket.on('sendChat', (msg) => {
-    console.log(msg)
-    ws.broadcast.emit('receiveChat', msg)
+  db.query('SELECT * FROM chats', (err, result) => {
+    if (err) throw err
+
+    socket.emit('receiveChat', result.rows)
+  })
+
+  socket.on('sendChat', msg => {
+    db.query(`INSERT INTO chats (name, text)
+      VALUES ($1, $2)`,
+      [msg.name, msg.text], (err) => {
+
+        if (err) throw err;
+
+        socket.emit('receiveChat', [msg])
+    })
   })
 })
