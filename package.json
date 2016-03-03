@@ -1,0 +1,24 @@
+{
+  "name": "node-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "nodemon server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vazquecm/node-chat.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vazquecm/node-chat/issues"
+  },
+  "homepage": "https://github.com/vazquecm/node-chat#readme",
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  }
+}
