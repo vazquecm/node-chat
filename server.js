@@ -9,8 +9,13 @@ const io = require('socket.io')(server)
 
 const PORT = process.env.PORT || 3000
 
+// jade compiler
+app.set('view engine', 'jade')
+
+
+
 app.get('/', (req,res) => {
-  res.send('hello')
+  res.render('index')
 })
 
 
