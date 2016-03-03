@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/vazquecm/node-chat#readme",
   "devDependencies": {
+    "bower": "^1.7.7",
     "nodemon": "^1.9.1"
   },
   "dependencies": {
